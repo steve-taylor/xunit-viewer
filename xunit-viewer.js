@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { showHelp } from './src/cli/args.js'
 import getDescription from './src/cli/get-description.js'
 import getFiles from './src/cli/get-files.js'
 import getSuites from './src/cli/get-suites.js'
@@ -14,7 +15,6 @@ export default async (args) => {
 
   const results = args.results
   if (!fs.existsSync(results)) {
-    const { showHelp } = import('./src/cli/args.js')
     showHelp()
     console.log(logger.error('\n The folder/file:'), logger.file(results), logger.error('does not exist'))
     if (!args.script) process.exit(1)
